@@ -1,0 +1,60 @@
+extends layout
+
+block content
+
+  section#portfolio.portfolio
+    .container
+      h2.text-center.text-uppercase.text-secondary.mb-0 Portfolio
+      hr
+      .row
+        each row, i in rows
+          .col-md-6.col-lg-4
+            a.portfolio-item.d-block.mx-auto(href='#portfolio-modal-'+i)
+              .portfolio-item-caption.d-flex.position-absolute.h-100.w-100
+                .portfolio-item-caption-content.my-auto.w-100.text-center.text-white
+                  i.fas.fa-search-plus.fa-3x
+              img.img-fluid(src='/images/portfolio/'+ row.image)
+
+    // About Section
+  section#about.bg-primary.text-white.mb-0
+    .container
+      h2.text-center.text-uppercase.text-white About
+      hr
+      .row
+        .col-lg-4.ml-auto
+          p.lead
+            | Node.js is a powerful and popular framework, which is used to develop and create highly-scalable network applications using JavaScript on the server side. Many popular companies, such as Microsoft, LinkedIn, Yahoo!, and Walmart use Node.js due to its non-blocking, asynchronous execution model that makes its servers highly scalable server
+        .col-lg-4.mr-auto
+          p.lead
+            | This course will introduce you to node.js framework. Explain why you should use it in your applications. What makes it different from any other existing technologies such as PHP and ASP.NET. Also, we will cover Node.js APIs such as the file system, path, http APIs with many examples. You will learn how to use Node.js to build web application and how to communicate with database to store and retrieve data.
+      .text-center.mt-4
+        a.btn.btn-xl.btn-outline-light(href='#')
+          i.fas.fa-download.mr-2
+          |             Download Now!
+    each row, i in rows
+      // Portfolio Modals
+      div(id='portfolio-modal-'+i).portfolio-modal.mfp-hide
+        .portfolio-modal-dialog.bg-white
+          a.close-button.d-none.d-md-block.portfolio-modal-dismiss(href='#')
+            i.fa.fa-3x.fa-times
+          .container.text-center
+            .row
+              .col-lg-8.mx-auto
+                h2.text-secondary.text-uppercase.mb-0=row.title
+                hr.star-dark.mb-5
+                img.img-fluid.mb-5(src='images/portfolio/'+row.image, alt='')
+                p.mb-5 #{row.description}
+                ul.list-inline
+                  li.list-inline-item
+                    |client:
+                    strong #{row.client}
+                  li.list-inline-item
+                    |Date:
+                    strong #{moment(row.date).format('MM-DD-YYYY')}
+                  li.list-inline-item
+                    |service:
+                    strong #{row.service}
+                br
+                a.btn.btn-primary.btn-lg.rounded-pill.portfolio-modal-dismiss(href='#')
+                  i.fa.fa-close
+                  |                 Close Project
